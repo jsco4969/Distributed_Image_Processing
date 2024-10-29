@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Upload</title>
+</head>
+<body>
+    <h1>Upload Image for Processing</h1>
+    <form id="uploadForm" action="/upload" method="POST" enctype="multipart/form-data">
+        <label for="image">Choose an image:</label>
+        <input type="file" id="image" name="image" accept="image/*" required>
+        <br><br>
+        <input type="submit" value="Upload">
+    </form>
+
+    <div id="response"></div>
+
+    <script>
+        const form = document.getElementById('uploadForm');
+        form.onsubmit = async (event) => {
+            event.preventDefault(); // Prevent the default form submission
+
+            const formData = new FormData(form);
+
+            // Send the form data to the server
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: formData
+            });
+
+            if (response.ok) {
+                const blob = await response.blob(); // Get the processed image as a blob
+                const url = URL.createObjectURL(blob); // Create a URL for the blob
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'processed_image.jpg'; // Set the filename for download
+                a.textContent = 'Download Processed Image'; // Link text
+                document.getElementById('response').innerHTML = ''; // Clear previous response
+                document.getElementById('response').appendChild(a); // Add download link to the page
+            } else {
+                document.getElementById('response').textContent = 'Error processing the image.';
+            }
+        };
+    </script>
+</body>
+</html>
