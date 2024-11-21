@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Distributed Image Processor</title>
+    <style>
+        /* Base styling for the body */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(120deg, #84fab0, #8fd3f4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Card container for the form */
+        .card {
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            padding: 30px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        /* Form title styling */
+        .card h1 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #333333;
+        }
+
+        /* File input styling */
+        .file-input {
+            display: block;
+            margin: 20px auto;
+            font-size: 1rem;
+            color: #666666;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+            max-width: 300px;
+            outline: none;
+        }
+
+        /* Upload button styling */
+        .upload-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            max-width: 300px;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Hover effect for the button */
+        .upload-btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Responsive design for smaller screens */
+        @media (max-width: 600px) {
+            .card {
+                width: 100%;
+                margin: 20px;
+                padding: 20px;
+            }
+
+            .card h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Upload Image for Processing</h1>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <input type="file" class="file-input" name="image" accept="image/*" required>
+            <button type="submit" class="upload-btn">Upload and Process</button>
+        </form>
+    </div>
+</body>
+</html>
